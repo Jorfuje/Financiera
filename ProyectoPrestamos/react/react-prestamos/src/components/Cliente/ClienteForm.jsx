@@ -1,32 +1,59 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 
 import * as ClienteServer from "./ClienteServer";
 
 const ClienteForm=()=>{
     const history=useHistory();
-    const initialState={id:0,name:"",apellidos:"",fechaNacimiento:"",rfc:"",correo:"",telefono:""};
+    const params = useParams();
 
-    const [cliente, setCliente]=useState(initialState);
+    const initialState={id:0,name:"",apellidos:"",fechaNacimiento:"",rfc:"",correo:"",telefono:"", password:""};
 
-    const handleInputChange=(e)=>{
-        setCliente({...cliente, [e.target.name]: e.target.value });
+    const [ cliente, setCliente ]=useState(initialState);
+
+    const handleInputChange = (e) => {
+        setCliente({ ...cliente, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        try{
-            let res;
-            res = await ClienteServer.registerCliente(cliente);
-            const data = await res.json();
-            if(data.message==="Success"){
-                setCliente(initialState);
-            }
-            history.push("/");
-        }catch(error){
-            console.log(error);
+      e.preventDefault();
+      try {
+        let res;
+        if (!params.id) {
+          res = await ClienteServer.registerCliente(cliente);
+          const data = await res.json();
+          if (data.message === "Success") {
+            setCliente(initialState);
+          }
+        } else {
+          await ClienteServer.updateCliente(params.id, cliente);
         }
+        history.push("/");
+      } catch (error) {
+        console.log(error);
+      }
     };
+
+
+
+    const getCliente = async (clienteId) => {
+      try {
+        const res = await ClienteServer.getCliente(clienteId);
+        const data = await res.json();
+        const nom = clienteId.name;
+        const { name } = data.cliente;
+        setCliente({name:nom });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    useEffect(() => {
+      if (params.id) {
+        getCliente(params.id);
+      }
+      // eslint-disable-next-line
+    }, [])
 
 
     return (<div className="col-md-3 mx-auto">
@@ -56,21 +83,24 @@ const ClienteForm=()=>{
         <label className="form-label">Telefono</label>
         <input type="text" name="telefono" value={cliente.telefono} onChange={handleInputChange} className="form-control" maxLength="100" required />
       </div>
-
       <div className="mb-3">
         <label className="form-label">Password</label>
-        <input type="text" name="password" value={cliente.paswword} onChange={handleInputChange} className="form-control" minLength="8" maxLength="8" required />
+        <input type="text" name="password" value={cliente.password} onChange={handleInputChange} className="form-control" minLength="8" maxLength="8" required />
       </div>
-     
       <div className="d-grid gap-2">
-
-          <button type="submit" className="btn btn-block btn-primary">
-            Registrar
-          </button>
-
+          {params.id ? (
+            <button type="submit" className="btn btn-block btn-primary">
+              Update
+            </button>
+          ) : (
+            <button type="submit" className="btn btn-block btn-success">
+              Register
+            </button>
+          )}
       </div>
     </form>
-  </div>)
+  </div>
+  );
 };
 
 export default ClienteForm;

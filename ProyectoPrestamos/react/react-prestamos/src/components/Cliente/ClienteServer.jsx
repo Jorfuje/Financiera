@@ -4,6 +4,10 @@ export const listClientes = async () => {
     return await fetch(API_URL)
 };
 
+export const getCliente = async (clienteId) => {
+    return await fetch(`${API_URL}${clienteId}`);
+};
+
 export const registerCliente= async (newCliente) => {
     return await fetch(API_URL,{
         method:'POST',
@@ -19,5 +23,29 @@ export const registerCliente= async (newCliente) => {
             "telefono":String(newCliente.telefono).trim(),
             "password":String(newCliente.password).trim(),
         })
+    });
+};
+
+export const updateCliente = async (clienteId, updatedCliente) => {
+    return await fetch(`${API_URL}${clienteId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "name": String(updatedCliente.name).trim(),
+            "apellidos": String(updatedCliente.apellidos).trim(),
+            "fechaNacimiento": String(updatedCliente.fechaNacimiento).trim(),
+            "rfc": String(updatedCliente.rfc).trim(),
+            "correo": String(updatedCliente.correo).trim(),
+            "telefono": String(updatedCliente.telefono).trim(),
+            "password": String(updatedCliente.password).trim(),
+        })
+    });
+};
+
+export const deleteCliente = async (clienteId) => {
+    return await fetch (`${API_URL}${clienteId}`, {
+        method: 'DELETE'
     });
 };

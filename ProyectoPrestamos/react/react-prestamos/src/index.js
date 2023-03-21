@@ -20,6 +20,7 @@ root.render(
             <Switch>
                 <Route exact path='/' component={ClienteList}/>
                 <Route path='/clienteForm' component={ClienteForm}/>
+                <Route path='/updateCliente/:id' component={ClienteForm}/>
             </Switch>
          </div>
     </BrowserRouter>

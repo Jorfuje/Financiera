@@ -25,7 +25,7 @@ const ClienteList = () => {
   return (
     <div className="row">
       {clientes.map((cliente) => (
-        <ClienteItem key={cliente.id} cliente={cliente} listCompanies={listClientes} />
+        <ClienteItem key={cliente.id} cliente={cliente} listClientes={listClientes} />
       ))}
     </div>
   );

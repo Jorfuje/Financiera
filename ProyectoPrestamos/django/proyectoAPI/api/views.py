@@ -45,7 +45,7 @@ class ClienteView(View):
         clientes = list(Cliente.objects.filter(id=id).values())
         if len(clientes) > 0:
             cliente=Cliente.objects.get(id=id)
-            ClienteView.name=jd['name']
+            cliente.name=jd['name']
             cliente.apellidos = jd['apellidos']
             cliente.fechaNacimiento = jd['fechaNacimiento']
             cliente.rfc = jd['rfc']
