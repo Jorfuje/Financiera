@@ -52,8 +52,10 @@ const ClienteForm=()=>{
       try {
         const res = await ClienteServer.getCliente(clienteId);
         const data = await res.json();
-        const {name, apellidos, fechaNacimiento, rfc, correo, telefono , password} = data.cliente;
+        console.log(data);
+        const {name, apellidos, fechaNacimiento, rfc, correo, telefono , password} = data.clientes;
         setCliente({ name,  apellidos, fechaNacimiento, rfc, correo, telefono , password });
+        
       } catch (error) {
         console.log(error);
       }
@@ -80,7 +82,7 @@ const ClienteForm=()=>{
       </div>
       <div className="mb-3">
         <label className="form-label">Fecha de Nacimiento</label>
-        <input type="date" name="fechaNacimiento" value={cliente.fechaNacimiento} onChange={handleInputChange} className="form-control" maxLength="100" required />
+        <input type="date" name="fechaNacimiento" value={cliente.fechaNacimiento} data-date-format="yyyy-mm-dd" onChange={handleInputChange} className="form-control" maxLength="100" required />
       </div>
       <div className="mb-3">
         <label className="form-label">RFC</label>
@@ -101,14 +103,16 @@ const ClienteForm=()=>{
       <div className="d-grid gap-2">
           {params.id ? (
             <button type="submit" className="btn btn-block btn-primary">
-              Update
+              Modificar
             </button>
           ) : (
             <button type="submit" className="btn btn-block btn-success">
-              Register
+              Registrar
             </button>
           )}
         </div>
+        <script type="text/javascript">
+</script>
     </form>
   </div>
   );

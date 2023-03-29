@@ -16,7 +16,7 @@ const ClienteItem=({ cliente, listClientes })=>{
             <div className="card card-body">
                 <h3 className="card-title">{cliente.name}
                 <button onClick={() => history.push(`/updateCliente/${cliente.id}`)} className="ms-2 btn btn-sm btn-info">
-                    Update
+                    Modificar
                 </button>
                 </h3>
                 <p className="card-text">Apellidos: <strong>{cliente.apellidos}</strong></p>
@@ -24,7 +24,7 @@ const ClienteItem=({ cliente, listClientes })=>{
                 <p className="card-text">RFC: <strong>{cliente.rfc}</strong></p>
                 <p className="card-email">Correo:: <strong>{cliente.correo}</strong></p>
                 <p className="card-text">Telefono: <strong>{cliente.telefono}</strong></p>
-                <button onClick={() =>cliente.id && handleDelete(cliente.id)} className="btn btn-danger my-2" >Delete</button>
+                <button onClick={() =>cliente.id && handleDelete(cliente.id)} className="btn btn-danger my-2" >Eliminar</button>
             
             </div>
         </div>
