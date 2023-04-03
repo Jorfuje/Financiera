@@ -8,7 +8,7 @@ const ClienteForm=()=>{
     const history=useHistory();
     const params = useParams();
 
-    const initialState={id:0,name:"",apellidos:"",fechaNacimiento:"",rfc:"",correo:"",telefono:"", password:""};
+    const initialState={id:0,name:"",apellidos:"",fechaNacimiento:"",rfc:"",correo:"",telefono:"", password:"", rol:1};
 
     const [ cliente, setCliente ]=useState(initialState);
 
@@ -53,8 +53,8 @@ const ClienteForm=()=>{
         const res = await ClienteServer.getCliente(clienteId);
         const data = await res.json();
         console.log(data);
-        const {name, apellidos, fechaNacimiento, rfc, correo, telefono , password} = data.clientes;
-        setCliente({ name,  apellidos, fechaNacimiento, rfc, correo, telefono , password });
+        const {name, apellidos, fechaNacimiento, rfc, correo, telefono , password,rol} = data.clientes;
+        setCliente({ name,  apellidos, fechaNacimiento, rfc, correo, telefono , password, rol });
         
       } catch (error) {
         console.log(error);
@@ -94,7 +94,7 @@ const ClienteForm=()=>{
       </div>
       <div className="mb-3">
         <label className="form-label">Telefono</label>
-        <input type="text" name="telefono" value={cliente.telefono} onChange={handleInputChange} className="form-control" maxLength="100" required />
+        <input type="text" name="telefono" value={cliente.telefono} onChange={handleInputChange} className="form-control" minLength="10" maxLength="10" required/>
       </div>
       <div className="mb-3">
         <label className="form-label">Password</label>

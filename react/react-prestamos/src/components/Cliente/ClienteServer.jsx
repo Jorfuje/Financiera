@@ -23,6 +23,7 @@ export const registerCliente= async (newCliente) => {
             "correo":String(newCliente.correo).trim(),
             "telefono":String(newCliente.telefono).trim(),
             "password":String(newCliente.password).trim(),
+            "rol":String(newCliente.rol).trim(),
         })
     });
 };
@@ -41,6 +42,7 @@ export const updateCliente = async (clienteId, updatedCliente) => {
             "correo": String(updatedCliente.correo).trim(),
             "telefono": String(updatedCliente.telefono).trim(),
             "password": String(updatedCliente.password).trim(),
+            "rol": String(updatedCliente.rol).trim(),
         })
     });
 };
