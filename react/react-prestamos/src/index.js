@@ -8,6 +8,9 @@ import Navbar from './components/Navbar/Navbar';
 import ClienteList from './components/Cliente/ClienteList';
 import ClienteForm from './components/Cliente/ClienteForm';
 
+import EmpleadoList from './components/Empleado/EmpleadoList';
+import EmpleadoForm from './components/Empleado/EmpleadoForm';
+
 import "bootstrap/dist/css/bootstrap.min.css"
 import './index.css';
 
@@ -21,6 +24,10 @@ root.render(
                 <Route exact path='/' component={ClienteList}/>
                 <Route path='/clienteForm' component={ClienteForm}/>
                 <Route path='/updateCliente/:id' component={ClienteForm}/>
+                
+                <Route exact path='/empleadoList' component={EmpleadoList}/>
+                <Route path='/EmpleadoForm' component={EmpleadoForm}/>
+                <Route path='/updateEmpleado/:id' component={EmpleadoForm}/>
             </Switch>
          </div>
     </BrowserRouter>
