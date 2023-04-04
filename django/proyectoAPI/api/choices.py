@@ -1,0 +1,9 @@
+pagos=(
+    ('S','Semanal'),
+    ('Q','Quincenal'),
+    ('M','Mensual')
+)
+status=(
+    ('1','Activo'),
+    ('0','Inactivo')
+)

@@ -2,7 +2,7 @@ from django.http.response import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-from .models import Cliente, Empleado
+from .models import Cliente, Empleado, Prestamo
 import json
 
 # Create your views here.
@@ -151,3 +151,60 @@ class EmpleadoView(View):
             datos={'message':"Empleados not found"}
         return JsonResponse(datos)
     
+# View Prestamos
+class PrestamoView(View):
+    
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, id = 0):
+        if (id > 0):
+            prestamos = list(Prestamo.objects.filter(id=id).values())
+            if len(prestamos) > 0:
+                prestamo = prestamos[0]
+                datos={'message':"Seccess",'Prestamos':prestamo}
+            else:
+                datos = {'message':"Prestamos not found"}
+            return JsonResponse(datos)
+        else: 
+            prestamos = list(Prestamo.objects.values())
+            if len(prestamos)>0:
+                datos={'message':"Seccess",'prestamos':prestamos}
+            else:
+                datos={'message':"Prestamos not found"}
+            return JsonResponse(datos)
+        
+    def post(self, request):
+        print(request.body)
+        jd = json.loads(request.body)
+        Prestamo.objects.create(status = jd['status'], monto = jd['monto'],
+            pagos = jd['pagos'], cliente_id = jd['cliente_id'])
+        datos = {'message':"Success"}
+
+        return JsonResponse(datos)
+        print(datos)
+
+    def put(self, request, id):
+        jd = json.loads(request.body)
+        prestamos = list(Prestamo.objects.filter(id=id).values())
+        if len(prestamos) > 0:
+            prestamo=Prestamo.objects.get(id=id)
+            prestamo.status=jd['status']
+            prestamo.monto = jd['monto']
+            prestamo.pagos = jd['pagos']
+            prestamo.cliente_id = jd['cliente_id']
+            prestamo.save()
+            datos = {'message': "Success"}
+        else:
+            datos={'message':"Prestamos not found"}
+        return JsonResponse(datos)
+    
+    def delete(self, request, id):
+        prestamos = list(Prestamo.objects.filter(id=id).values())
+        if len(prestamos) > 0:
+            Prestamo.objects.filter(id=id).delete()
+            datos = {'message': "Success"}
+        else:
+            datos={'message':"Prestamos not found"}
+        return JsonResponse(datos)
