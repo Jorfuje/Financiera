@@ -11,6 +11,9 @@ import ClienteForm from './components/Cliente/ClienteForm';
 import EmpleadoList from './components/Empleado/EmpleadoList';
 import EmpleadoForm from './components/Empleado/EmpleadoForm';
 
+import PrestamoList from './components/Prestamos/PrestamoList';
+import PrestamoForm from './components/Prestamos/PrestamoForm';
+
 import "bootstrap/dist/css/bootstrap.min.css"
 import './index.css';
 
@@ -28,6 +31,10 @@ root.render(
                 <Route exact path='/empleadoList' component={EmpleadoList}/>
                 <Route path='/EmpleadoForm' component={EmpleadoForm}/>
                 <Route path='/updateEmpleado/:id' component={EmpleadoForm}/>
+
+                <Route exact path='/prestamoList' component={PrestamoList}/>
+                <Route path='/Prestamoform' component={PrestamoForm}/>
+                <Route path='/updatePrestamo/:id' component={PrestamoForm} />
             </Switch>
          </div>
     </BrowserRouter>

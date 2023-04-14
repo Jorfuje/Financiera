@@ -13,6 +13,12 @@ class Cliente(models.Model):
     password = models.CharField(max_length=12)
     rol = models.CharField(max_length=1)
 
+    def nombre_completo(self):
+        return "{}, {}".format(self.apellidos, self.name)
+    
+    def __str__(self):
+        return self.nombre_completo
+
 # Clase Empleado
 class Empleado(models.Model):
     name = models.CharField(max_length=20)
@@ -24,9 +30,15 @@ class Empleado(models.Model):
     password = models.CharField(max_length=12)
     rol = models.CharField(max_length=1)
 
+    def nombre_completo(self):
+        return "{}, {}".format(self.apellidos, self.name)
+    
+    def __str__(self):
+        return self.nombre_completo
+
 # Clase prestamo
 class Prestamo(models.Model):
-    status = models.CharField(max_length=1, choices=status, default='1')
+    status = models.CharField(max_length=9, choices=status, default='Inactivo')
     monto = models.FloatField(default=0)
-    pagos = models.CharField(max_length=1, choices=pagos, default='S')
+    pagos = models.CharField(max_length=9, choices=pagos, default='Semanal')
     cliente = models.ForeignKey(Cliente,null=True,blank=True,on_delete=models.CASCADE)

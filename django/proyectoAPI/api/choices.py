@@ -1,9 +1,9 @@
 pagos=(
-    ('S','Semanal'),
-    ('Q','Quincenal'),
-    ('M','Mensual')
+    ('Semanal','Semanal'),
+    ('Quicenal','Quincenal'),
+    ('Mensual','Mensual')
 )
 status=(
-    ('1','Activo'),
-    ('0','Inactivo')
+    ('Activo','Activo'),
+    ('Inactivo','Inactivo')
 )

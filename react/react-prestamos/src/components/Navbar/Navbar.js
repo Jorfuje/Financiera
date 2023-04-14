@@ -20,10 +20,16 @@ const Navbar=()=>{
           <Link className="nav-link" to="/empleadoList">Lista Empleado</Link>
         </li>
         <li className="nav-item">
+          <Link className="nav-link" to="/prestamoList">Lista Prestamos</Link>
+        </li>
+        <li className="nav-item">
           <Link className="nav-link" to="/clienteForm">Registrar Cliente</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/empleadoForm">Registrar Empleado</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/prestamoForm">Registrar Prestamo</Link>
         </li>
       </ul>
     </div>
