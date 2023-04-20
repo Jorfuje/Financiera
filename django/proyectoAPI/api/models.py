@@ -42,3 +42,4 @@ class Prestamo(models.Model):
     monto = models.FloatField(default=0)
     pagos = models.CharField(max_length=9, choices=pagos, default='Semanal')
     cliente = models.ForeignKey(Cliente,null=True,blank=True,on_delete=models.CASCADE)
+

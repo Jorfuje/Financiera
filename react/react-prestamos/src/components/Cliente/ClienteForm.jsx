@@ -8,7 +8,7 @@ const ClienteForm=()=>{
     const history=useHistory();
     const params = useParams();
 
-    const initialState={id:0,name:"",apellidos:"",fechaNacimiento:"",rfc:"",correo:"",telefono:"", password:"", rol:1};
+    const initialState={id:0,name:"",apellidos:"",fechaNacimiento:"",rfc:"",correo:"",telefono:"", password:"", rol:2};
 
     const [ cliente, setCliente ]=useState(initialState);
 
