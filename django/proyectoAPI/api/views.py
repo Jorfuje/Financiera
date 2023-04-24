@@ -193,6 +193,7 @@ class PrestamoView(View):
             prestamo.status=jd['status']
             prestamo.monto = jd['monto']
             prestamo.pagos = jd['pagos']
+            
             prestamo.cliente_id = jd['cliente_id']
             prestamo.save()
             datos = {'message': "Success"}

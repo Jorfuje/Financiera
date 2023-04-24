@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import pymysql
 
-pymysql.install_as_MySQLdb()
+#pymysql.install_as_MySQLdb()
+pymysql.version_info = ( 1, 4, 6, 'final', 0 )
+pymysql.install_as_MySQLdb ( )
 
 from pathlib import Path
 

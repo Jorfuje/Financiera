@@ -13,12 +13,6 @@ class Cliente(models.Model):
     password = models.CharField(max_length=12)
     rol = models.CharField(max_length=1)
 
-    def nombre_completo(self):
-        return "{}, {}".format(self.apellidos, self.name)
-    
-    def __str__(self):
-        return self.nombre_completo
-
 # Clase Empleado
 class Empleado(models.Model):
     name = models.CharField(max_length=20)
@@ -30,11 +24,6 @@ class Empleado(models.Model):
     password = models.CharField(max_length=12)
     rol = models.CharField(max_length=1)
 
-    def nombre_completo(self):
-        return "{}, {}".format(self.apellidos, self.name)
-    
-    def __str__(self):
-        return self.nombre_completo
 
 # Clase prestamo
 class Prestamo(models.Model):
