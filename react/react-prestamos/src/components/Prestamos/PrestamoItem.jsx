@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import * as PrestamoServer from "./PrestamoServer";
+import * as ClienteServer from "../Cliente/ClienteServer"
+
 
 const PrestamoItem=({ prestamo, listPrestamos })=>{
     const history = useHistory();
+
+const [cliente,setCliente]=useState([])
+
+const handleNom = async () =>  { 
+    const data = await (await ClienteServer.getCliente(prestamo.cliente_id)).json();
+    setCliente(data.clientes);
+    console.log(data);
+};
 
     const handleDelete = async (prestamoId) =>  { 
         await PrestamoServer.deletePrestamo(prestamoId);
         listPrestamos();
     };
+
+    useEffect(async()=>{await handleNom()},[]);
 
     return (
         <div className="col-md-4">
@@ -22,7 +34,8 @@ const PrestamoItem=({ prestamo, listPrestamos })=>{
                 <p className="card-text">Status: <strong>{prestamo.status}</strong></p>
                 <p className="card-text">Monto: <strong>{prestamo.monto}</strong></p>
                 <p className="card-text">Tipo de pago: <strong>{prestamo.pagos}</strong></p>
-                <p className="card-email">Cliente: <strong>{prestamo.cliente_id}</strong></p>
+                <p className="card-text">Cliente: <strong>{prestamo.cliente_id}</strong></p>
+                <p className="card-text">Nombre cliente: <strong>{cliente.name + cliente.apellidos}</strong></p>
                 <button onClick={() =>prestamo.id && handleDelete(prestamo.id)} className="btn btn-danger my-2" >Eliminar</button>
             
             </div>

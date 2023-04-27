@@ -156,11 +156,16 @@ class PrestamoView(View):
     
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
+        prestamo = Prestamo.objects.get(id=1)
+        print(prestamo)
+        pers = prestamo.cliente.apellidos + " " + prestamo.cliente.name
+        print(pers)
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, id = 0):
         if (id > 0):
             prestamos = list(Prestamo.objects.filter(id=id).values())
+            print(prestamos)
             if len(prestamos) > 0:
                 prestamo = prestamos[0]
                 datos={'message':"Seccess",'Prestamos':prestamo}

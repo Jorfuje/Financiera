@@ -13,6 +13,9 @@ class Cliente(models.Model):
     password = models.CharField(max_length=12)
     rol = models.CharField(max_length=1)
 
+    def __str__(self):
+        return self.name
+
 # Clase Empleado
 class Empleado(models.Model):
     name = models.CharField(max_length=20)
@@ -31,4 +34,5 @@ class Prestamo(models.Model):
     monto = models.FloatField(default=0)
     pagos = models.CharField(max_length=9, choices=pagos, default='Semanal')
     cliente = models.ForeignKey(Cliente,null=True,blank=True,on_delete=models.CASCADE)
+
 
