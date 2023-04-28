@@ -34,8 +34,8 @@ const handleNom = async () =>  {
                 <p className="card-text">Status: <strong>{prestamo.status}</strong></p>
                 <p className="card-text">Monto: <strong>{prestamo.monto}</strong></p>
                 <p className="card-text">Tipo de pago: <strong>{prestamo.pagos}</strong></p>
-                <p className="card-text">Cliente: <strong>{prestamo.cliente_id}</strong></p>
-                <p className="card-text">Nombre cliente: <strong>{cliente.name + cliente.apellidos}</strong></p>
+                <p className="card-text">No. cliente: <strong>{prestamo.cliente_id}</strong></p>
+                <p className="card-text">Nombre cliente: <strong>{cliente.name + " " + cliente.apellidos}</strong></p>
                 <button onClick={() =>prestamo.id && handleDelete(prestamo.id)} className="btn btn-danger my-2" >Eliminar</button>
             
             </div>

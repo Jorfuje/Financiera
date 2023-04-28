@@ -20,7 +20,7 @@ const PrestamoForm = () => {
     swal("Error", "Error en la conexión con la base de datos");
   }
   const mostrarAlerta2 = () => {
-    swal("Error", "Usuario ya registrado!");
+    swal("Error", "Cliente con préstamo activo!");
   }
 
   const handleSubmit = async (e) => {
