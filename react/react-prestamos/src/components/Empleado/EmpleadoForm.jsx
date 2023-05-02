@@ -39,6 +39,7 @@ const EmpleadoForm=()=>{
           }
         } else {
           await EmpleadoServer.updateEmpleado(params.id, empleado);
+          swal("Seccess", "Empleado actualizado!");
         }
         history.push("/empleadoList");
       } catch (error) {

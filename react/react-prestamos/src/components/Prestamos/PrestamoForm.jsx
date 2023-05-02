@@ -39,6 +39,7 @@ const PrestamoForm = () => {
         }
       } else {
         await PrestamoServer.updatePrestamo(params.id, prestamo);
+        swal("Seccess", "Préstamo actualizado!");
       }
       history.push("/prestamoList");
     } catch (error) {
@@ -57,7 +58,6 @@ const PrestamoForm = () => {
       console.log(data);
       const { status, monto, pagos, cliente_id } = data.prestamos;
       setPrestamo({ status, monto, pagos, cliente_id });
-
     } catch (error) {
       console.log(error);
     }

@@ -39,6 +39,7 @@ const ClienteForm=()=>{
           }
         } else {
           await ClienteServer.updateCliente(params.id, cliente);
+          swal("Seccess", "Cliente actualizado!");
         }
         history.push("/");
       } catch (error) {

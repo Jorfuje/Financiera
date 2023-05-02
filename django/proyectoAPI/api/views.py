@@ -167,10 +167,9 @@ class PrestamoView(View):
     def get(self, request, id=0):
         if (id > 0):
             prestamos = list(Prestamo.objects.filter(id=id).values())
-            print(prestamos)
             if len(prestamos) > 0:
                 prestamo = prestamos[0]
-                datos = {'message': "Seccess", 'Prestamos': prestamo}
+                datos = {'message': "Seccess", 'prestamos': prestamo}
             else:
                 datos = {'message': "Prestamos not found"}
             return JsonResponse(datos)
