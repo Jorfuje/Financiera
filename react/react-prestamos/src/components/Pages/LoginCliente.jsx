@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './Login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as EmpleadoServer from "../Empleado/EmpleadoServer";
 import * as ClienteServer from "../Cliente/ClienteServer";
+import * as EmpleadoServer from "../Empleado/EmpleadoServer";
 import swal from "sweetalert";
 class Login extends Component {
   state = {
@@ -22,35 +22,20 @@ class Login extends Component {
   }
 
   iniciarSesion = async () => {
-    const res = await EmpleadoServer.getEmpleadoByCorreo(this.state.form.correo);
+    const res = await ClienteServer.getClienteByCorreo(this.state.form.correo);
     const data = await res.json();
     console.log(data);
-    if (data.message === "Seccess") {
-      if (data.empleados.password === this.state.form.password) {
-        console.log(data.empleados.password);
-        window.location.href = "./Prestamoform"
+    if (data.message === "Seccess" ) {
+      if (data.clientes.password === this.state.form.password){
+        console.log(data.clientes.password);
+        window.location.href = "./clientesList"
       }
-      else {
+      else{
         swal("Error", "Contraseña invalida");
       }
     }
     else {
-      const res = await ClienteServer.getClienteByCorreo(this.state.form.correo);
-      const data = await res.json();
-      console.log(data);
-      if (data.message === "Seccess") {
-        if (data.clientes.password === this.state.form.password) {
-          console.log(data.clientes.password);
-          window.location.href = "./clienteList"
-        }
-        else {
-          swal("Error", "Contraseña invalida");
-        }
-      }
-      else{
-        swal("Error", "Correo invalido");
-      }
-      
+      swal("Error", "Correo invalido");
     }
 
   }

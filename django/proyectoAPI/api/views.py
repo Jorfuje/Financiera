@@ -16,8 +16,8 @@ class ClienteView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, id=0, correo= " "):
-        if(id==0 and correo!=" "):
+    def get(self, request, id=0, correo=" "):
+        if (id == 0 and correo != " "):
             clientes = list(Cliente.objects.filter(correo=correo).values())
             if len(clientes) > 0:
                 cliente = clientes[0]
@@ -98,8 +98,16 @@ class EmpleadoView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, id=0):
-        if (id > 0):
+    def get(self, request, id=0, correo=" "):
+        if (id == 0 and correo != " "):
+            empleados = list(Empleado.objects.filter(correo=correo).values())
+            if len(empleados) > 0:
+                empleado = empleados[0]
+                datos = {'message': "Seccess", 'empleados': empleado}
+            else:
+                datos = {'message': "Empleados not found"}
+            return JsonResponse(datos)
+        elif (id > 0 and correo != " "):
             empleados = list(Empleado.objects.filter(id=id).values())
             if len(empleados) > 0:
                 empleado = empleados[0]
@@ -205,7 +213,7 @@ class PrestamoView(View):
                     x = 1
         if (x == 0):
             Prestamo.objects.create(status=jd['status'], monto=jd['monto'],
-                                pagos=jd['pagos'], cliente_id=jd['cliente_id'])
+                                    pagos=jd['pagos'], cliente_id=jd['cliente_id'])
             datos = {'message': "Success"}
         else:
             datos = {'message': "Cliente con un prestamo activo"}

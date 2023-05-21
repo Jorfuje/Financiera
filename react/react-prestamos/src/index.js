@@ -23,7 +23,8 @@ import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-        <Navbar />
+    <div><Route exact path='/' component={Login} /></div>
+        
         <div className='container my-4'>
             <Switch>
                 <Route path='/clienteList' component={ClienteList} />
@@ -37,8 +38,6 @@ root.render(
                 <Route path='/prestamoList' component={PrestamoList} />
                 <Route path='/Prestamoform' component={PrestamoForm} />
                 <Route path='/updatePrestamo/:id' component={PrestamoForm} />
-
-                <Route exact path='/' component={Login} />
             </Switch>
         </div>
     </BrowserRouter>

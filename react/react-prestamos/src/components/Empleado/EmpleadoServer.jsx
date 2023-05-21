@@ -8,6 +8,10 @@ export const getEmpleado = async (empleadoId) => {
     return await fetch(`${API_URL}${empleadoId}`);
 };
 
+export const getEmpleadoByCorreo = async (correo) => {
+    return await fetch(`${API_URL}/${correo}`);
+};
+
 
 export const registerEmpleado= async (newEmpleado) => {
     return await fetch(API_URL,{
