@@ -4,6 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as EmpleadoServer from "../Empleado/EmpleadoServer";
 import * as ClienteServer from "../Cliente/ClienteServer";
 import swal from "sweetalert";
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
+
 class Login extends Component {
   state = {
     form: {
@@ -28,7 +33,11 @@ class Login extends Component {
     if (data.message === "Seccess") {
       if (data.empleados.password === this.state.form.password) {
         console.log(data.empleados.password);
-        window.location.href = "./Prestamoform"
+        //var respuesta = data[0];
+        cookies.set('id', data.empleados.id, { path: "/" })
+        cookies.set('name', data.empleados.name, { path: "/" })
+        swal('Bienvenido', data.empleados.name)
+        window.location.href = "./menu"
       }
       else {
         swal("Error", "Contraseña invalida");
@@ -47,14 +56,20 @@ class Login extends Component {
           swal("Error", "Contraseña invalida");
         }
       }
-      else{
+      else {
         swal("Error", "Correo invalido");
       }
-      
+
     }
 
   }
 
+
+  componentDidMount() {
+    if (cookies.get('name')) {
+      window.location.href = "./menu";
+    }
+  }
   render() {
     return (
       <div className="containerPrincipal">
