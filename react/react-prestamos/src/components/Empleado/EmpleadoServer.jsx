@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000/api/empleados/";
+const API_URL = "http://127.0.0.1:8000/api/empleados";
 
 export const listEmpleados = async () => {
     return await fetch(API_URL);
