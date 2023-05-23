@@ -55,8 +55,18 @@ class ClienteView(View):
 
     def put(self, request, id):
         jd = json.loads(request.body)
+        x = 0
+        clientes1 = list(Cliente.objects.values())
+        for cliente1 in clientes1:
+                    if jd['correo'] == cliente1['correo']:
+                        x = 1
+                        print(1)
         clientes = list(Cliente.objects.filter(id=id).values())
-        if len(clientes) > 0:
+        for cliente in clientes:
+                    if jd['correo'] == cliente['correo']:
+                        x = 0
+                        print(2)
+        if len(clientes) > 0 and x == 0:
             cliente = Cliente.objects.get(id=id)
             cliente.name = jd['name']
             cliente.apellidos = jd['apellidos']
@@ -68,6 +78,9 @@ class ClienteView(View):
             cliente.rol = jd['rol']
             cliente.save()
             datos = {'message': "Success"}
+        elif x == 1:
+            datos = {'message': "Correo"}
+            print(3)
         else:
             datos = {'message': "clientes not found"}
         return JsonResponse(datos)
@@ -129,8 +142,20 @@ class EmpleadoView(View):
 
     def put(self, request, id):
         jd = json.loads(request.body)
+        x = 0
+        empleados1 = list(Empleado.objects.values())
+        for empleado1 in empleados1:
+                    if jd['correo'] == empleado1['correo']:
+                        x = 1
+                        print(1)
         empleados = list(Empleado.objects.filter(id=id).values())
-        if len(empleados) > 0:
+        for empleado in empleados:
+                    if jd['correo'] == empleado['correo']:
+                        x = 0
+                        print(2)
+        
+        print(jd['correo'])
+        if len(empleados) > 0 and x == 0:
             empleado = Empleado.objects.get(id=id)
             empleado.name = jd['name']
             empleado.apellidos = jd['apellidos']
@@ -142,6 +167,9 @@ class EmpleadoView(View):
             empleado.rol = jd['rol']
             empleado.save()
             datos = {'message': "Success"}
+        elif x == 1:
+            datos = {'message': "Correo"}
+            print(3)
         else:
             datos = {'message': "Empleados not found"}
         return JsonResponse(datos)
@@ -197,7 +225,7 @@ class PrestamoView(View):
                     x = 1
         if (x == 0):
             Prestamo.objects.create(status=jd['status'], monto=jd['monto'],
-                                pagos=jd['pagos'], cliente_id=jd['cliente_id'])
+                                    pagos=jd['pagos'], cliente_id=jd['cliente_id'])
             datos = {'message': "Success"}
         else:
             datos = {'message': "Cliente con un prestamo activo"}
