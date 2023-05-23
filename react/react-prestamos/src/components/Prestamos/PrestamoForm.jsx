@@ -100,6 +100,9 @@ const PrestamoForm = () => {
             Registrar
           </button>
         )}
+        <button onClick={() => history.push(`/prestamoList`)} className="d-grid gap-2 btn-info">
+          Cancelar
+        </button>
       </div>
       <script type="text/javascript">
       </script>

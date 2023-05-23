@@ -121,6 +121,9 @@ const EmpleadoForm = () => {
             Registrar
           </button>
         )}
+        <button onClick={() => history.push(`/empleadoList`)} className="d-grid gap-2 btn-info">
+          Cancelar
+        </button>
       </div>
       <script type="text/javascript">
       </script>

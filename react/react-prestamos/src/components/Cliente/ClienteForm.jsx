@@ -120,6 +120,9 @@ const ClienteForm = () => {
             Registrar
           </button>
         )}
+        <button onClick={() => history.push(`/`)} className="d-grid gap-2 btn-info">
+          Cancelar
+        </button>
       </div>
       <script type="text/javascript">
       </script>
