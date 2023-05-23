@@ -66,11 +66,12 @@ const EmpleadoForm = () => {
       console.log(data);
       const { name, apellidos, fechaNacimiento, rfc, correo, telefono, password, rol } = data.empleados;
       setEmpleado({ name, apellidos, fechaNacimiento, rfc, correo, telefono, password, rol });
-
+      console.log(data)
     } catch (error) {
       console.log(error);
     }
   };
+
 
   useEffect(() => {
     if (params.id) {

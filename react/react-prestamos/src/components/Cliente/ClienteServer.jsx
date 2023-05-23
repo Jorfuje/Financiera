@@ -1,11 +1,15 @@
-const API_URL = "http://127.0.0.1:8000/api/clientes/";
+const API_URL = "http://127.0.0.1:8000/api/clientes";
 
 export const listClientes = async () => {
     return await fetch(API_URL);
 };
 
 export const getCliente = async (clienteId) => {
-    return await fetch(`${API_URL}${clienteId}`);
+    return await fetch(`${API_URL}/${clienteId}`);
+};
+
+export const getClienteByCorreo = async (correo) => {
+    return await fetch(`${API_URL}//${correo}`);
 };
 
 
@@ -29,7 +33,7 @@ export const registerCliente= async (newCliente) => {
 };
 
 export const updateCliente = async (clienteId, updatedCliente) => {
-    return await fetch(`${API_URL}${clienteId}`, {
+    return await fetch(`${API_URL}/${clienteId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -48,7 +52,7 @@ export const updateCliente = async (clienteId, updatedCliente) => {
 };
 
 export const deleteCliente = async (clienteId) => {
-    return await fetch (`${API_URL}${clienteId}`, {
+    return await fetch (`${API_URL}/${clienteId}`, {
         method: 'DELETE'
     });
 };

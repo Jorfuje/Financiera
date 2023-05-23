@@ -65,7 +65,7 @@ const ClienteForm = () => {
       console.log(data);
       const { name, apellidos, fechaNacimiento, rfc, correo, telefono, password, rol } = data.clientes;
       setCliente({ name, apellidos, fechaNacimiento, rfc, correo, telefono, password, rol });
-
+      console.log(data)
     } catch (error) {
       console.log(error);
     }

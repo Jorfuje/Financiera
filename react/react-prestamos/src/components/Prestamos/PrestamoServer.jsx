@@ -1,11 +1,11 @@
-const API_URL = "http://127.0.0.1:8000/api/prestamos/";
+const API_URL = "http://127.0.0.1:8000/api/prestamos";
 
 export const listPrestamos = async () => {
     return await fetch(API_URL);
 };
 
 export const getPrestamo = async (prestamoId) => {
-    return await fetch(`${API_URL}${prestamoId}`);
+    return await fetch(`${API_URL}/${prestamoId}`);
 };
 
 
@@ -25,7 +25,7 @@ export const registerPrestamo= async (newPrestamo) => {
 };
 
 export const updatePrestamo = async (prestamoId, updatedPrestamo) => {
-    return await fetch(`${API_URL}${prestamoId}`, {
+    return await fetch(`${API_URL}/${prestamoId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ export const updatePrestamo = async (prestamoId, updatedPrestamo) => {
 };
 
 export const deletePrestamo = async (prestamoId) => {
-    return await fetch (`${API_URL}${prestamoId}`, {
+    return await fetch (`${API_URL}/${prestamoId}`, {
         method: 'DELETE'
     });
 };

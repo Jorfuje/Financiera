@@ -16,8 +16,16 @@ class ClienteView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, id=0):
-        if (id > 0):
+    def get(self, request, id=0, correo=" "):
+        if (id == 0 and correo != " "):
+            clientes = list(Cliente.objects.filter(correo=correo).values())
+            if len(clientes) > 0:
+                cliente = clientes[0]
+                datos = {'message': "Seccess", 'clientes': cliente}
+            else:
+                datos = {'message': "Clientes not found"}
+            return JsonResponse(datos)
+        elif (id > 0):
             clientes = list(Cliente.objects.filter(id=id).values())
             if len(clientes) > 0:
                 cliente = clientes[0]
@@ -103,15 +111,23 @@ class EmpleadoView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request, id=0):
-        if (id > 0):
-            empleados = list(Empleado.objects.filter(id=id).values())
+    def get(self, request, id=0, correo=" "):
+        if (id == 0 and correo != " "):
+            empleados = list(Empleado.objects.filter(correo=correo).values())
             if len(empleados) > 0:
                 empleado = empleados[0]
                 datos = {'message': "Seccess", 'empleados': empleado}
             else:
                 datos = {'message': "Empleados not found"}
             return JsonResponse(datos)
+        elif (id > 0):
+            empleados = list(Empleado.objects.filter(id=id).values())
+            if len(empleados) > 0:
+                empleado = empleados[0]
+                datos = {'message': "Seccess", 'empleados': empleado}
+            else:
+                datos = {'message': "Empleados not found"}
+            return JsonResponse(datos)        
         else:
             empleados = list(Empleado.objects.values())
             if len(empleados) > 0:
