@@ -22,7 +22,6 @@ const ClienteList = () => {
     listClientes();
   }, []);
 
-  
   return (
     <div className="row">
       {clientes.map((cliente) => (

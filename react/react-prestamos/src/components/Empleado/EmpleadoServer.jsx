@@ -5,11 +5,11 @@ export const listEmpleados = async () => {
 };
 
 export const getEmpleado = async (empleadoId) => {
-    return await fetch(`${API_URL}${empleadoId}`);
+    return await fetch(`${API_URL}/${empleadoId}`);
 };
 
 export const getEmpleadoByCorreo = async (correo) => {
-    return await fetch(`${API_URL}/${correo}`);
+    return await fetch(`${API_URL}//${correo}`);
 };
 
 
@@ -33,7 +33,7 @@ export const registerEmpleado= async (newEmpleado) => {
 };
 
 export const updateEmpleado = async (empleadoId, updatedEmpleado) => {
-    return await fetch(`${API_URL}${empleadoId}`, {
+    return await fetch(`${API_URL}/${empleadoId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ export const updateEmpleado = async (empleadoId, updatedEmpleado) => {
 };
 
 export const deleteEmpleado = async (empleadoId) => {
-    return await fetch (`${API_URL}${empleadoId}`, {
+    return await fetch (`${API_URL}/${empleadoId}`, {
         method: 'DELETE'
     });
 };

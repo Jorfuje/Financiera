@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as EmpleadoServer from "../Empleado/EmpleadoServer";
+import * as EmpleadoServer from "../Empleado/EmpleadoServer"
 import * as ClienteServer from "../Cliente/ClienteServer";
 import swal from "sweetalert";
 import Cookies from 'universal-cookie';
@@ -50,7 +50,10 @@ class Login extends Component {
       if (data.message === "Seccess") {
         if (data.clientes.password === this.state.form.password) {
           console.log(data.clientes.password);
-          window.location.href = "./clienteList"
+          cookies.set('id', data.clientes.id, { path: "/" })
+          cookies.set('name', data.clientes.name, { path: "/" })
+          swal('Bienvenido', data.clientes.name)
+          window.location.href = "./menu"
         }
         else {
           swal("Error", "Contraseña invalida");
@@ -64,12 +67,12 @@ class Login extends Component {
 
   }
 
-
   componentDidMount() {
     if (cookies.get('name')) {
       window.location.href = "./menu";
     }
   }
+
   render() {
     return (
       <div className="containerPrincipal">

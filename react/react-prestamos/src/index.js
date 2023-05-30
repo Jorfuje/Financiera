@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
 // Componentes
+import Navbar from './components/Navbar/Navbar';
 import ClienteList from './components/Cliente/ClienteList';
 import ClienteForm from './components/Cliente/ClienteForm';
 
@@ -13,32 +14,31 @@ import EmpleadoForm from './components/Empleado/EmpleadoForm';
 import PrestamoList from './components/Prestamos/PrestamoList';
 import PrestamoForm from './components/Prestamos/PrestamoForm';
 
+import "bootstrap/dist/css/bootstrap.min.css"
+import './index.css';
 
 import Login from './components/Pages/Login';
 import Menu from './components/Pages/Menu';
-import "bootstrap/dist/css/bootstrap.min.css";
-import './index.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-
-        <Route exact path='/' component={Login} />
-        <Route exact path='/menu' component={Menu} />
-
-
+        <Navbar />
         <div className='container my-4'>
             <Switch>
-                <Route path='/clienteList' component={ClienteList} />
+                <Route exact path='/' component={Login} />
+                <Route exact path='/menu' component={Menu} />
+
+                <Route exact path='/clienteList' component={ClienteList} />
                 <Route path='/clienteForm' component={ClienteForm} />
                 <Route path='/updateCliente/:id' component={ClienteForm} />
 
-                <Route path='/empleadoList' component={EmpleadoList} />
+                <Route exact path='/empleadoList' component={EmpleadoList} />
                 <Route path='/EmpleadoForm' component={EmpleadoForm} />
                 <Route path='/updateEmpleado/:id' component={EmpleadoForm} />
 
-                <Route path='/prestamoList' component={PrestamoList} />
+                <Route exact path='/prestamoList' component={PrestamoList} />
                 <Route path='/Prestamoform' component={PrestamoForm} />
                 <Route path='/updatePrestamo/:id' component={PrestamoForm} />
             </Switch>

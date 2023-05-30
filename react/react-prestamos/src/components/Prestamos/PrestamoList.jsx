@@ -13,7 +13,6 @@ const PrestamoList = () => {
       const res = await PrestamoServer.listPrestamos();
       const data = await res.json();
       setPrestamos(data.prestamos);
-      console.log(data)
     } catch (error) {
       console.log(error);
     }

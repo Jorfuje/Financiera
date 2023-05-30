@@ -5,11 +5,11 @@ export const listClientes = async () => {
 };
 
 export const getCliente = async (clienteId) => {
-    return await fetch(`${API_URL}${clienteId}`);
+    return await fetch(`${API_URL}/${clienteId}`);
 };
 
 export const getClienteByCorreo = async (correo) => {
-    return await fetch(`${API_URL}/${correo}`);
+    return await fetch(`${API_URL}//${correo}`);
 };
 
 
@@ -33,7 +33,7 @@ export const registerCliente= async (newCliente) => {
 };
 
 export const updateCliente = async (clienteId, updatedCliente) => {
-    return await fetch(`${API_URL}${clienteId}`, {
+    return await fetch(`${API_URL}/${clienteId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ export const updateCliente = async (clienteId, updatedCliente) => {
 };
 
 export const deleteCliente = async (clienteId) => {
-    return await fetch (`${API_URL}${clienteId}`, {
+    return await fetch (`${API_URL}/${clienteId}`, {
         method: 'DELETE'
     });
 };

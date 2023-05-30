@@ -4,10 +4,11 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 class Menu extends Component {
-    cerrarSesion=()=>{
-        cookies.remove('id', {path: "/"});
-        cookies.remove('name', {path: "/"});
-        window.location.href='./';
+
+    cerrarSesion = () => {
+        cookies.remove('id', { path: "/" });
+        cookies.remove('name', { path: "/" });
+        window.location.href = './';
     }
 
     componentDidMount() {
@@ -22,10 +23,10 @@ class Menu extends Component {
         return (
             <div>
                 Menu Principal
-                <p className="card-text">Nombre cliente: <strong>{cookies.get('name')}</strong></p>
-
+                <p className="card-text">Nombre cliente: 
+                <strong>{cookies.get('name')}</strong></p>
                 <br />
-                <button onClick={()=>this.cerrarSesion()}>Cerrar Sesión</button>
+                <button onClick={() => this.cerrarSesion()}>Cerrar Sesión</button>
             </div>
         );
     }
